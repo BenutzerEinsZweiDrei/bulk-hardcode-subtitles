@@ -9,7 +9,8 @@ add subtitles srt as captions to video for complete folder
 
 # usage
 
-open cmd
+1. edit path
+2. open cmd
 
 `python subtitles.py`
 
