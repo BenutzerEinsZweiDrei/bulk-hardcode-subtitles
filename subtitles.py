@@ -29,6 +29,7 @@ def create_subtitle_clips(subtitles, videosize,fontsize=60, font='Arial', color=
 
 count = 0
 
+# change your path here
 directory = "<your folder>"
 
 for filename in os.listdir(directory):
@@ -43,29 +44,22 @@ for filename in os.listdir(directory):
 
             srtfilename = file_name[0] + ".srt"
             mp4filename = file_name[0] + ".mp4"
-            # print(srtfilename)
+            # debug: print(srtfilename)
             if os.path.isfile(srtfilename):
-                
+
+                # print to cmd where we at
                 count = count + 1
                 print(str(count) + " MP4: "+ mp4filename)
 
 
-                
+                # recode srt files so moviepy can deal with them
                 fd = open(srtfilename,"r")
-
                 r = fd.read()
-
                 txt = r.decode('ascii', "ignore")
-
-                # print(txt)
-
                 fd.close()
-
+                
                 fd = open(srtfilename,"w")
-
-
                 fd.write(txt.encode('ascii', "ignore"))
-
                 fd.close()
 
                 # Load video and SRT file
@@ -84,7 +78,6 @@ for filename in os.listdir(directory):
                 final_video = CompositeVideoClip([video] + subtitle_clips)
 
                 # reduce speed
-
                 final = final_video.fx(vfx.speedx, 0.8)
 
                 # Write output video file
